@@ -7,6 +7,7 @@ import { useState } from 'react'
 const BlogList = (props) => {
   const [posts, setPosts] = useState('')
   const [postsLoaded, setPostsLoaded] = useState(false)
+  const user = props.user
 
   useEffect(() => {
     getData()
@@ -40,7 +41,7 @@ const BlogList = (props) => {
                 marginBottom: 50,
               }}
             >
-              <BlogItem key={post.title} {...post} />
+              <BlogItem user={user} key={post.title} {...post} />
             </Col>
           ))}
         </Row>

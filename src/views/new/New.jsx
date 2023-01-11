@@ -3,13 +3,21 @@ import { Button, Container, Form } from 'react-bootstrap'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import './styles.css'
+import axios from 'axios'
 const NewBlogPost = (props) => {
   const [text, setText] = useState('')
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('Category 1')
+  const [filePicked, setfilePicked] = useState(false)
+  const [selectedFile, setselectedFile] = useState()
   const handleChange = useCallback((value) => {
     setText(value)
   })
+
+  const changeHandler = (event) => {
+    setselectedFile(event.target.files[0])
+    setfilePicked(true)
+  }
 
   const handleSelect = useCallback((value) => {
     setCategory(value.target.value)
@@ -26,7 +34,7 @@ const NewBlogPost = (props) => {
     const data = {
       category: category,
       title: title,
-      cover: 'https://picsum.photos/100/100',
+      cover: '',
       readTime: {
         value: 2,
         unit: 'minute',
@@ -54,6 +62,22 @@ const NewBlogPost = (props) => {
 
       if (response.ok) {
         console.log('Post was successful: ', response)
+        let postData = await response.json()
+
+        if (filePicked) {
+          const url = `http://localhost:3001/posts/${postData._id}/uploadCover`
+          const formData = new FormData()
+          formData.append('cover', selectedFile)
+          const config = {
+            method: 'POST',
+            headers: {
+              'content-Type': 'multipart/form-data',
+            },
+          }
+          axios.post(url, formData, config).then((response) => {
+            console.log(response.data)
+          })
+        }
       }
     } catch (error) {
       console.log(error)
@@ -75,6 +99,9 @@ const NewBlogPost = (props) => {
             <option>Category4</option>
             <option>Category5</option>
           </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="blog-form" className="mt-3">
+          <Form.File id="custom-file" custom onChange={changeHandler} />
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
           <Form.Label>Blog Content</Form.Label>

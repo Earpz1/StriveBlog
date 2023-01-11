@@ -8,8 +8,27 @@ import './styles.css'
 const Blog = (props) => {
   const [blog, setBlog] = useState()
   const [loading, setLoading] = useState(true)
+  const [user, setuser] = useState()
+  const [isloaded, setisloaded] = useState(true)
   const params = useParams()
   const navigate = useNavigate()
+
+  const getUser = async () => {
+    const options = {
+      method: 'GET',
+    }
+    const fetchURL = `http://localhost:3001/authors/igt8ajclbz5xqwo`
+
+    try {
+      let response = await fetch(fetchURL, options)
+      console.log(response)
+      if (response.ok) {
+        console.log('Edit was successful')
+        setuser(await response.json())
+        setisloaded(true)
+      }
+    } catch (error) {}
+  }
 
   const getBlog = async () => {
     const options = {
@@ -29,10 +48,11 @@ const Blog = (props) => {
   }
 
   useEffect(() => {
+    getUser()
     getBlog()
   }, [])
 
-  if (loading) {
+  if (loading && isloaded) {
     return <div>loading</div>
   } else {
     return (
@@ -43,7 +63,7 @@ const Blog = (props) => {
 
           <div className="blog-details-container">
             <div className="blog-details-author">
-              <BlogAuthor {...blog.author} />
+              <BlogAuthor user={user} />
             </div>
             <div className="blog-details-info">
               <div>{blog.createdAt}</div>
