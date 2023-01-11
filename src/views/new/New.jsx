@@ -54,7 +54,7 @@ const NewBlogPost = (props) => {
         'Content-type': 'application/json',
       },
     }
-    const fetchURL = `https://talented-hoodie-dog.cyclic.app/posts`
+    const fetchURL = `https://striveblog-be-production.up.railway.app/posts`
 
     try {
       let response = await fetch(fetchURL, options)
@@ -65,7 +65,7 @@ const NewBlogPost = (props) => {
         let postData = await response.json()
 
         if (filePicked) {
-          const url = `https://talented-hoodie-dog.cyclic.app/posts/${postData._id}/uploadCover`
+          const url = `https://striveblog-be-production.up.railway.app/posts/${postData._id}/uploadCover`
           const formData = new FormData()
           formData.append('cover', selectedFile)
           const config = {
