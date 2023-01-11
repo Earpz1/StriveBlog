@@ -13,7 +13,7 @@ const Home = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = `http://localhost:3001/authors/igt8ajclbz5xqwo`
+    const fetchURL = `https://talented-hoodie-dog.cyclic.app/authors/igt8ajclbz5xqwo`
 
     try {
       let response = await fetch(fetchURL, options)

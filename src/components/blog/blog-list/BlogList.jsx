@@ -17,7 +17,7 @@ const BlogList = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = 'http://localhost:3001/posts/'
+    const fetchURL = 'https://talented-hoodie-dog.cyclic.app/posts/'
 
     try {
       let response = await fetch(fetchURL, options)

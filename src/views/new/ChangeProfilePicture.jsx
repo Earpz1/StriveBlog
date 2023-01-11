@@ -16,7 +16,7 @@ export const ChangeProfilePicture = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const url = `http://localhost:3001/authors/igt8ajclbz5xqwo/uploadAvatar`
+    const url = `https://talented-hoodie-dog.cyclic.app/igt8ajclbz5xqwo/uploadAvatar`
     const formData = new FormData()
     formData.append('avatar', fileSelected)
     const config = {
