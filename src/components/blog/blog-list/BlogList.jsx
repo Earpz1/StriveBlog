@@ -17,7 +17,7 @@ const BlogList = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = 'https://talented-hoodie-dog.cyclic.app/posts/'
+    const fetchURL = 'https://striveblog-be-production.up.railway.app/posts/'
 
     try {
       let response = await fetch(fetchURL, options)

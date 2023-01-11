@@ -17,7 +17,7 @@ const Blog = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = `https://talented-hoodie-dog.cyclic.app/authors/igt8ajclbz5xqwo`
+    const fetchURL = `https://striveblog-be-production.up.railway.app/authors/igt8ajclbz5xqwo`
 
     try {
       let response = await fetch(fetchURL, options)
@@ -34,7 +34,7 @@ const Blog = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = `https://talented-hoodie-dog.cyclic.app/posts/${params.id}`
+    const fetchURL = `https://striveblog-be-production.up.railway.app/posts/${params.id}`
 
     try {
       let response = await fetch(fetchURL, options)

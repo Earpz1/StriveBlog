@@ -16,7 +16,7 @@ export const ChangeProfilePicture = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const url = `https://talented-hoodie-dog.cyclic.app/igt8ajclbz5xqwo/uploadAvatar`
+    const url = `https://striveblog-be-production.up.railway.app/igt8ajclbz5xqwo/uploadAvatar`
     const formData = new FormData()
     formData.append('avatar', fileSelected)
     const config = {
