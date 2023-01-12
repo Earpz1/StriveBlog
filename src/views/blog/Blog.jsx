@@ -74,7 +74,14 @@ const Blog = (props) => {
                 }}
               >
                 <BlogLike defaultLikes={['123']} onChange={console.log} />
-                <a href={'../files/pdf/post/' + params.id}>Export as PDF</a>
+                <a
+                  href={
+                    'https://striveblog-be-production.up.railway.app/files/pdf/post/' +
+                    params.id
+                  }
+                >
+                  Export as PDF
+                </a>
               </div>
             </div>
           </div>
