@@ -74,6 +74,7 @@ const Blog = (props) => {
                 }}
               >
                 <BlogLike defaultLikes={['123']} onChange={console.log} />
+                <a href="#">Export as PDF</a>
               </div>
             </div>
           </div>
