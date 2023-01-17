@@ -98,7 +98,7 @@ const Blog = (props) => {
                 >
                   Export as PDF
                 </a>
-                <Button onClick={deleteBlog()}>Delete blog</Button>
+                <Button onClick={() => deleteBlog}>Delete blog</Button>
               </div>
             </div>
           </div>
