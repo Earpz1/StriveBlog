@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Image } from 'react-bootstrap'
+import { Container, Image, Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import BlogAuthor from '../../components/blog/blog-author/BlogAuthor'
 import BlogLike from '../../components/likes/BlogLike'
@@ -47,6 +47,22 @@ const Blog = (props) => {
     } catch (error) {}
   }
 
+  const deleteBlog = async () => {
+    const options = {
+      method: 'DELETE',
+    }
+    const fetchURL = `https://strive-mongo-production.up.railway.app/posts/${params.id}`
+
+    try {
+      let response = await fetch(fetchURL, options)
+      console.log(response)
+      if (response.ok) {
+        console.log('Delete was successful')
+        setLoading(false)
+      }
+    } catch (error) {}
+  }
+
   useEffect(() => {
     getUser()
     getBlog()
@@ -82,6 +98,7 @@ const Blog = (props) => {
                 >
                   Export as PDF
                 </a>
+                <Button onClick={deleteBlog()}>Delete blog</Button>
               </div>
             </div>
           </div>
