@@ -59,6 +59,7 @@ const Blog = (props) => {
       if (response.ok) {
         console.log('Delete was successful')
         setLoading(false)
+        window.location.href = 'https://strive-blog-fe-liart.vercel.app/'
       }
     } catch (error) {}
   }
@@ -98,6 +99,7 @@ const Blog = (props) => {
                 >
                   Export as PDF
                 </a>
+                <br></br>
                 <Button onClick={deleteBlog}>Delete blog</Button>
               </div>
             </div>
