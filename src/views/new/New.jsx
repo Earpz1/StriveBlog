@@ -44,7 +44,6 @@ const NewBlogPost = (props) => {
         avatar: 'https://ui-avatars.com/api/?name=Daniel+Earp',
       },
       content: text,
-      createdAt: new Date().toDateString(),
     }
 
     const options = {
@@ -54,7 +53,7 @@ const NewBlogPost = (props) => {
         'Content-type': 'application/json',
       },
     }
-    const fetchURL = `https://striveblog-be-production.up.railway.app/posts`
+    const fetchURL = `https://strive-mongo-production.up.railway.app/posts`
 
     try {
       let response = await fetch(fetchURL, options)
