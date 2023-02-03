@@ -1,9 +1,13 @@
 import React from 'react'
 import { Button, Container, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import './styles.css'
+import { getCartData } from '../../fetches'
 
 const NavBar = (props) => {
+  const { data, isLoading } = useQuery(['cartData'], getCartData)
+
   return (
     <Navbar expand="lg" className="blog-navbar" fixed="top">
       <Container className="justify-content-between">
@@ -13,7 +17,7 @@ const NavBar = (props) => {
         <div className="d-flex">
           <a href="/cart/Dan">
             <Button className="blog-navbar-add-button bg-dark" size="md">
-              View Cart
+              Cart - {!isLoading && data.length + ` items`}
             </Button>
           </a>
         </div>
