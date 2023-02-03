@@ -3,7 +3,7 @@ import NavBar from './components/navbar/BlogNavbar'
 import Footer from './components/footer/Footer'
 import Home from './views/home/Home'
 import Blog from './views/blog/Blog'
-import NewBlogPost from './views/new/New'
+import Cart from './views/Cart/cart'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/blog/:id" element={<Blog />} />
-        <Route path="/new" element={<NewBlogPost />} />
+        <Route path="/cart/:id" element={<Cart />} />
       </Routes>
       <Footer />
     </Router>

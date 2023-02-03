@@ -1,9 +1,9 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import BlogAuthor from '../blog-author/BlogAuthor'
 import './styles.css'
-const BlogItem = (props) => {
+const CartItem = (props) => {
   const {
     name,
     description,
@@ -19,13 +19,15 @@ const BlogItem = (props) => {
     <Card className="blog-card">
       <Card.Img variant="top" src={imageURL} className="blog-cover" />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title>
+          {category} - {name}
+        </Card.Title>
       </Card.Body>
       <Card.Footer>
-        <BlogAuthor price={price} id={_id} />
+        <Button className="bg-danger">Remove from Cart</Button>
       </Card.Footer>
     </Card>
   )
 }
 
-export default BlogItem
+export default CartItem

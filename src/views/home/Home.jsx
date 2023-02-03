@@ -13,7 +13,7 @@ const Home = (props) => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = `https://striveblog-be-production.up.railway.app/authors/igt8ajclbz5xqwo`
+    const fetchURL = `http://localhost:3001/products`
 
     try {
       let response = await fetch(fetchURL, options)
@@ -36,7 +36,6 @@ const Home = (props) => {
         <Container fluid="sm">
           <h1 className="blog-main-title">Welcome to the Strive Blog!</h1>
           <BlogList user={user} />
-          <ChangeProfilePicture user={user} />
         </Container>
       )}
     </>
