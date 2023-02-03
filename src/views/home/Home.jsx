@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import BlogList from '../../components/blog/blog-list/BlogList'
-import ChangeProfilePicture from '../new/ChangeProfilePicture'
 import './styles.css'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -17,9 +16,7 @@ const Home = (props) => {
 
     try {
       let response = await fetch(fetchURL, options)
-      console.log(response)
       if (response.ok) {
-        console.log('Edit was successful')
         setuser(await response.json())
         setisloaded(true)
       }

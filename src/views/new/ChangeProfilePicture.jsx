@@ -2,12 +2,10 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useState } from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
 
 export const ChangeProfilePicture = (props) => {
   const [isFilePicked, setisFilePicked] = useState(false)
   const [fileSelected, setfileSelected] = useState()
-  const [newAvatar, setnewAvatar] = useState(false)
 
   const handleChange = (e) => {
     setfileSelected(e.target.files[0])

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Image, Button } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import BlogAuthor from '../../components/blog/blog-author/BlogAuthor'
 import BlogLike from '../../components/likes/BlogLike'
 import './styles.css'
@@ -11,7 +11,6 @@ const Blog = (props) => {
   const [user, setuser] = useState()
   const [isloaded, setisloaded] = useState(true)
   const params = useParams()
-  const navigate = useNavigate()
 
   const getUser = async () => {
     const options = {

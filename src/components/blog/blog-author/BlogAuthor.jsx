@@ -1,18 +1,16 @@
 import React from 'react'
-import { Col, Image, Row, Button } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
 import './styles.css'
 
 const BlogAuthor = (props) => {
   const addToCart = async (id) => {
-    console.log(`Add item ${id} to the cart`)
-
     const options = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
     }
-    const fetchURL = `http://localhost:3001/cart/63caba35c8228de3317851c6/${id}`
+    const fetchURL = `http://localhost:3001/cart/Dan/${id}`
 
     try {
       let response = await fetch(fetchURL, options)

@@ -7,14 +7,11 @@ import { useState } from 'react'
 const BlogList = (props) => {
   const [posts, setPosts] = useState('')
   const [postsLoaded, setPostsLoaded] = useState(false)
-  const [cartLength, setcartLength] = useState(0)
   const [display, setdisplay] = useState(3)
-  const [filter, setFilter] = useState('name')
   const user = props.user
 
   useEffect(() => {
     getData()
-    getCartData()
   }, [])
 
   useEffect(() => {
@@ -37,34 +34,12 @@ const BlogList = (props) => {
 
     try {
       let response = await fetch(fetchURL, options)
-      console.log(response)
       if (response.ok) {
-        console.log('Edit was successful')
         setPosts(await response.json())
         setPostsLoaded(true)
       }
     } catch (error) {}
   }
-
-  const getCartData = async () => {
-    const options = {
-      method: 'GET',
-    }
-    const fetchURL = 'http://localhost:3001/cart/63caba35c8228de3317851c6'
-
-    try {
-      let response = await fetch(fetchURL, options)
-      if (response.ok) {
-        console.log(response)
-        const items = await response.json()
-        setcartLength(items.products.length)
-      }
-    } catch (error) {}
-  }
-
-  useEffect(() => {
-    getCartData()
-  }, [])
 
   return (
     <>
