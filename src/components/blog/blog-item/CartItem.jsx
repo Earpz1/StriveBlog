@@ -1,11 +1,12 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import './styles.css'
-import { useState } from 'react'
-const CartItem = (props) => {
-  const { product, imageURL } = props
+import { getCartData } from '../../../fetches'
+import { useQuery } from 'react-query'
 
-  const [visible, setVisible] = useState('blog-card')
+const CartItem = (props) => {
+  const { refetch } = useQuery(['cartData'], getCartData)
+  const { product } = props
 
   const removeFromCart = async (productID) => {
     const options = {
@@ -16,13 +17,15 @@ const CartItem = (props) => {
     try {
       let response = await fetch(fetchURL, options)
       if (response.ok) {
+        refetch()
         console.log(`Product Deleted`)
+        return
       }
     } catch (error) {}
   }
 
   return (
-    <Card className={visible}>
+    <Card className="blog-card">
       <Card.Img variant="top" src={product.imageURL} className="blog-cover" />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
