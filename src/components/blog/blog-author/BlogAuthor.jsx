@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Row, Button } from 'react-bootstrap'
+import { Col, Row, Button, Spinner } from 'react-bootstrap'
 import './styles.css'
 import { useQuery } from 'react-query'
 import { useState } from 'react'
@@ -9,6 +9,7 @@ const BlogAuthor = (props) => {
   const cartData = useQuery(['cartData'], getCartData)
 
   const [alreadyInCart, setInCart] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const addToCart = async (id) => {
     const options = {
@@ -24,8 +25,11 @@ const BlogAuthor = (props) => {
       console.log(response)
       if (response.ok) {
         cartData.refetch()
-        console.log(`${id} Added to cart!`)
-        setInCart(true)
+        setLoading(true)
+        setTimeout(() => {
+          setLoading(false)
+          setInCart(true)
+        }, 1500)
       }
     } catch (error) {}
   }
@@ -35,10 +39,10 @@ const BlogAuthor = (props) => {
       <Col className="d-flex justify-content-between">
         <h6 className="pt-2">£{props.price}</h6>
 
-        {!alreadyInCart && (
+        {!alreadyInCart && !loading && (
           <Button onClick={() => addToCart(props.id)}>Add to cart</Button>
         )}
-
+        {loading && <Spinner animation="border" role="status"></Spinner>}
         {alreadyInCart && `Added to cart!`}
       </Col>
     </Row>
