@@ -17,7 +17,7 @@ export const getStoreData = async () => {
   const options = {
     method: 'GET',
   }
-  const fetchURL = 'http://localhost:3001/products'
+  const fetchURL = 'http://localhost:3001/products/?limit=6&price=asc'
 
   try {
     let response = await fetch(fetchURL, options)

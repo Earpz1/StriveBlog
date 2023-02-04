@@ -14,7 +14,6 @@ const Cart = (props) => {
         <h1 className="blog-main-title">Your shopping cart</h1>
         {!isLoading && (
           <>
-            <h2>Total Cost: £{data.totalPrice}</h2>
             <Row>
               {data.cart.map((cart) => (
                 <Col

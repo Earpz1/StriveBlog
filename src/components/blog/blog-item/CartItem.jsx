@@ -1,12 +1,14 @@
 import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Spinner } from 'react-bootstrap'
 import './styles.css'
 import { getCartData } from '../../../fetches'
 import { useQuery } from 'react-query'
+import { useState } from 'react'
 
 const CartItem = (props) => {
   const { refetch } = useQuery(['cartData'], getCartData)
   const { product } = props
+  const [loading, setLoading] = useState(false)
 
   const removeFromCart = async (productID) => {
     const options = {
@@ -17,9 +19,11 @@ const CartItem = (props) => {
     try {
       let response = await fetch(fetchURL, options)
       if (response.ok) {
-        refetch()
-        console.log(`Product Deleted`)
-        return
+        setLoading(true)
+        setTimeout(() => {
+          refetch()
+          setLoading(false)
+        }, 700)
       }
     } catch (error) {}
   }
@@ -31,12 +35,16 @@ const CartItem = (props) => {
         <Card.Title>{product.name}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Button
-          className="bg-danger"
-          onClick={() => removeFromCart(product.id)}
-        >
-          Remove from Cart
-        </Button>
+        {loading ? (
+          <Spinner animation="border" role="status"></Spinner>
+        ) : (
+          <Button
+            className="bg-danger"
+            onClick={() => removeFromCart(product.id)}
+          >
+            Remove from Cart
+          </Button>
+        )}
       </Card.Footer>
     </Card>
   )

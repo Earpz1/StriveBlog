@@ -7,7 +7,9 @@ import { useState } from 'react'
 const BlogList = (props) => {
   const [posts, setPosts] = useState('')
   const [postsLoaded, setPostsLoaded] = useState(false)
-  const [display, setdisplay] = useState(3)
+  const [display, setdisplay] = useState(6)
+  const [filter, setFilter] = useState('')
+  const [sortPrice, setsortPrice] = useState('asc')
   const user = props.user
 
   useEffect(() => {
@@ -16,21 +18,50 @@ const BlogList = (props) => {
 
   useEffect(() => {
     getData()
-  }, [display])
+  }, [display, sortPrice])
+
+  useEffect(() => {
+    getFilterData()
+  }, [filter])
 
   const loadMore = () => {
     setdisplay(display + 3)
   }
 
   const sortBy = (filter) => {
-    console.log(filter)
+    setFilter(filter)
+  }
+
+  const orderPrice = () => {
+    if (sortPrice === 'asc') {
+      setsortPrice('desc')
+    } else {
+      setsortPrice('asc')
+    }
+  }
+
+  const getFilterData = async () => {
+    const options = {
+      method: 'GET',
+    }
+
+    const fetchURL = `http://localhost:3001/products/filter/${filter}`
+
+    try {
+      let response = await fetch(fetchURL, options)
+      if (response.ok) {
+        setPosts(await response.json())
+        setPostsLoaded(true)
+      }
+    } catch (error) {}
   }
 
   const getData = async () => {
     const options = {
       method: 'GET',
     }
-    const fetchURL = `http://localhost:3001/products/?limit=${display}`
+
+    const fetchURL = `http://localhost:3001/products/?limit=6&price=${sortPrice}`
 
     try {
       let response = await fetch(fetchURL, options)
@@ -46,20 +77,27 @@ const BlogList = (props) => {
       {postsLoaded && (
         <Row>
           <Col md={12} className="mb-5">
-            Sort by:{' '}
+            Filter:{' '}
             <Button
               onClick={() => {
-                sortBy('name')
+                sortBy('PS5')
               }}
             >
-              Name
+              PS5
             </Button>{' '}
             <Button
               onClick={() => {
-                sortBy('price')
+                sortBy('Xbox one')
               }}
             >
-              Price
+              Xbox One
+            </Button>{' '}
+            <Button
+              onClick={() => {
+                orderPrice()
+              }}
+            >
+              Sort Prices
             </Button>
           </Col>
           {posts.map((post) => (
