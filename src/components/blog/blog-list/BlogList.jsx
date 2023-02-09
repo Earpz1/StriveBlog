@@ -45,7 +45,7 @@ const BlogList = (props) => {
       method: 'GET',
     }
 
-    const fetchURL = `http://localhost:3001/products/filter/${filter}`
+    const fetchURL = `https://strive-mongo-production.up.railway.app/products/filter/${filter}`
 
     try {
       let response = await fetch(fetchURL, options)
@@ -61,7 +61,7 @@ const BlogList = (props) => {
       method: 'GET',
     }
 
-    const fetchURL = `http://localhost:3001/products/?limit=6&price=${sortPrice}`
+    const fetchURL = `https://strive-mongo-production.up.railway.app/products/?limit=6&price=${sortPrice}`
 
     try {
       let response = await fetch(fetchURL, options)

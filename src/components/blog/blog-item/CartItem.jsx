@@ -14,7 +14,7 @@ const CartItem = (props) => {
     const options = {
       method: 'DELETE',
     }
-    const fetchURL = `http://localhost:3001/cart/Dan/${productID}`
+    const fetchURL = `https://strive-mongo-production.up.railway.app/cart/Dan/${productID}`
 
     try {
       let response = await fetch(fetchURL, options)
