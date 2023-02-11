@@ -18,7 +18,7 @@ const BlogAuthor = (props) => {
         'Content-type': 'application/json',
       },
     }
-    const fetchURL = `https://strive-mongo-production.up.railway.app/cart/Dan/${id}`
+    const fetchURL = `http://localhost:3001/cart/Dan/${id}`
 
     try {
       let response = await fetch(fetchURL, options)

@@ -17,7 +17,7 @@ const NavBar = (props) => {
         <div className="d-flex">
           <a href="/cart/Dan">
             <Button className="blog-navbar-add-button bg-dark" size="md">
-              Cart - {!isLoading && `£ ` + '100' + `.00`}
+              Cart - {!isLoading && `£ ` + data.totalPrice + `.00`}
             </Button>
           </a>
         </div>
